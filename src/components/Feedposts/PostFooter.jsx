@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/logos";
-function PostFooter({ username }) {
+function PostFooter({ username, isProfilePage }) {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
   const handleLike = () => {
@@ -22,7 +22,7 @@ function PostFooter({ username }) {
     }
   };
   return (
-    <Box mb={10}>
+    <Box mb={10} mt={"auto"}>
       <Flex alignItems={"center"} gap={4} width={"full"} pt={0} mb={2} mt={4}>
         <Box onClick={handleLike} fontSize={18} cursor={"pointer"}>
           {isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -34,15 +34,19 @@ function PostFooter({ username }) {
       <Text fontSize={"sm"} fontWeight={600}>
         {likes} likes
       </Text>
-      <Text fontSize={"sm"} fontWeight={700}>
-        {username}{" "}
-        <Text as="span" fontWeight={400}>
-          Feeling good
-        </Text>
-      </Text>
-      <Text fontSize={"sm"} color={"gray"}>
-        View all 1,000 comments
-      </Text>
+      {!isProfilePage && (
+        <>
+          <Text fontSize={"sm"} fontWeight={700}>
+            {username}{" "}
+            <Text as="span" fontWeight={400}>
+              Feeling good
+            </Text>
+          </Text>
+          <Text fontSize={"sm"} color={"gray"}>
+            View all 1,000 comments
+          </Text>
+        </>
+      )}
       <Flex
         alignItems={"center"}
         gap={2}
