@@ -41,7 +41,13 @@ function Sidebar() {
       left={0}
       px={{ base: 2, md: 4 }}
     >
-      <Flex direction={"column"} gap={10} w={"full"} height={"full"}>
+      <Flex
+        direction={"column"}
+        gap={10}
+        w={"full"}
+        height={"full"}
+        alignItems={{ base: "center", md: "flex-start" }}
+      >
         <Link
           to={"/"}
           as={RouterLink}
@@ -116,7 +122,7 @@ function Sidebar() {
             justifyContent={{ base: "center", md: "flex-start" }}
           >
             <BiLogOut size={24} />
-            <Box display={{ base: "none", md: "block" }}>Logout</Box>
+            <Box display={{ base: "none", md: "block" }}>Log out</Box>
           </Link>
         </Tooltip>
       </Flex>
