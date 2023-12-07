@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 function SuggestedHeader() {
   return (
     <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
-      <Avatar name="penny c." size={"lg"} src="/profilepic.png" />
+      <Avatar name="penny c." size={"md"} src="/profilepic.png" />
       <Text fontSize={12} fontWeight={"bold"}>
         philedelp.sd_
       </Text>
