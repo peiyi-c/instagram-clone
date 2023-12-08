@@ -29,8 +29,9 @@ function useSignupWithEmailAndPassword() {
     const usersRef = collection(firestore, "users");
     const q = query(usersRef, where("username", "==", username));
     const qSnapshot = await getDocs(q);
-    if (qSnapshot.empty) {
+    if (!qSnapshot.empty) {
       showToast("Error", "Username already exists", "error");
+      return;
     }
 
     try {
