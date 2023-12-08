@@ -24,7 +24,7 @@ function SuggestedUsers() {
       <SuggestedUser
         username="abe.ryo"
         followers={10}
-        avatar="https://bit.ly/den-abramov"
+        avatar="https://bit.ly/ryan-florence"
       />
       <SuggestedUser
         username="ryan_insta"
