@@ -32,7 +32,7 @@ function useSignupWithEmailAndPassword() {
           bio: "",
           profilePicURL: "",
           followers: [],
-          followerings: [],
+          followings: [],
           posts: [],
           createAt: Date.now(),
         };
