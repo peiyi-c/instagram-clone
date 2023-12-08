@@ -1,16 +1,34 @@
 import { Flex, Box } from "@chakra-ui/react";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { Outlet } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import { Outlet, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function PageLayout() {
+  const { pathname } = useLocation();
+  const { user, loading } = useContext(AuthContext);
+  const renderSidebar = pathname !== "/auth" && user;
+  const renderNavbar = pathname !== "/auth" && !user && !loading;
+
   return (
-    <Flex>
-      {/* Left */}
-      <Box w={{ base: "70px", md: "240px" }}>
-        <Sidebar />
-      </Box>
-      {/* Right */}
-      <Box flex={1} w={{ base: "calc(100% - 70px)", md: "calc(100% - 240px)" }}>
+    <Flex direction={renderNavbar ? "column" : "row"}>
+      {/* Sidebar */}
+      {renderSidebar ? (
+        <Box w={{ base: "70px", md: "240px" }}>
+          <Sidebar />
+        </Box>
+      ) : null}
+      {/* Navbar */}
+      {renderNavbar ? <Navbar /> : null}
+      <Box
+        flex={1}
+        w={
+          renderNavbar
+            ? { base: "calc(100% - 70px)", md: "calc(100% - 240px)" }
+            : "full"
+        }
+      >
         <Outlet />
       </Box>
     </Flex>
