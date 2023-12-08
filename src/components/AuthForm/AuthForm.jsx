@@ -17,6 +17,12 @@ const AuthForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const handleChange = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
   const navigate = useNavigate();
   const handleAuth = () => {
     if (!inputs.email || !inputs.password) {
@@ -34,25 +40,23 @@ const AuthForm = () => {
             placeholder="Email"
             fontSize={14}
             type="email"
-            value={inputs.email}
-            onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
+            name="email"
+            onChange={handleChange}
           />
           <Input
             placeholder="Password"
             fontSize={14}
             type="password"
-            value={inputs.password}
-            onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+            name="password"
+            onChange={handleChange}
           />
           {!isLogin ? (
             <Input
               placeholder="Confirm Password"
               fontSize={14}
               type="password"
-              value={inputs.confirmPassword}
-              onChange={(e) =>
-                setInputs({ ...inputs, confirmPassword: e.target.value })
-              }
+              name="confirmPassword"
+              onChange={handleChange}
             />
           ) : null}
           <Button
