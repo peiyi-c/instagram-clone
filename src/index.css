@@ -1,4 +1,7 @@
 /* srcollbar */
+:root {
+  scrollbar-color: #3f3f48 #1e1e24;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
