@@ -24,7 +24,7 @@ function PageLayout() {
       <Box
         flex={1}
         w={
-          renderNavbar
+          renderSidebar
             ? { base: "calc(100% - 70px)", md: "calc(100% - 240px)" }
             : "full"
         }
