@@ -13,12 +13,15 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<PageLayout />}>
+            {/* only when user */}
             <Route element={<PrivateRoutes />}>
               <Route index element={<HomePage />} />
             </Route>
+            {/* only when !user */}
             <Route element={<PublicRoutes />}>
               <Route path="auth" element={<AuthPage />} />
             </Route>
+            {/* user || !user */}
             <Route path="/:username" element={<ProfilePage />} />
           </Route>
         </Routes>
