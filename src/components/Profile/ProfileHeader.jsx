@@ -6,8 +6,17 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import userProfileStore from "../../store/userProfileStore";
+import useAuthStore from "../../store/authStore";
 
 function ProfileHeader() {
+  const { userProfile } = userProfileStore();
+  const authUser = useAuthStore((state) => state.user);
+  const visitingOwnProfileAndAuth =
+    authUser && authUser.username === userProfile.username;
+  const visitingAnotherProfileAndAuth =
+    authUser && authUser.username !== userProfile.username;
+
   return (
     <Flex gap={{ base: 4, sm: 10 }} direction={{ base: "column", sm: "row" }}>
       <AvatarGroup
@@ -17,9 +26,9 @@ function ProfileHeader() {
         mx={"auto"}
       >
         <Avatar
-          src="/profilepic.png"
-          alt="as a programmer"
-          name="As a programmer"
+          src={userProfile.profilePicURL}
+          alt={userProfile.username}
+          name={userProfile.username}
         />
       </AvatarGroup>
       <VStack alignItems={"flex-start"} gap={2} mx={"auto"} flex={1}>
@@ -30,45 +39,61 @@ function ProfileHeader() {
           alignItems={"center"}
           w={"full"}
         >
-          <Text fontSize={{ base: "sm", md: "lg" }}>asaparagar_</Text>
-          <Flex gap={4} justifyContent={"center"} alignItems={"center"}>
-            <Button
-              bg={"white"}
-              color={"black"}
-              _hover={{ bg: "whiteAlpha.800" }}
-              size={{ base: "xs", md: "sm" }}
-            >
-              Edit Profile
-            </Button>
-          </Flex>
+          <Text fontSize={{ base: "sm", md: "lg" }}>
+            {userProfile.username}
+          </Text>
+          {visitingOwnProfileAndAuth && (
+            <Flex gap={4} justifyContent={"center"} alignItems={"center"}>
+              <Button
+                bg={"white"}
+                color={"black"}
+                _hover={{ bg: "whiteAlpha.800" }}
+                size={{ base: "xs", md: "sm" }}
+              >
+                Edit Profile
+              </Button>
+            </Flex>
+          )}
+          {visitingAnotherProfileAndAuth && (
+            <Flex gap={4} justifyContent={"center"} alignItems={"center"}>
+              <Button
+                bg={"blue.500"}
+                color={"white"}
+                _hover={{ bg: "blue.600" }}
+                size={{ base: "xs", md: "sm" }}
+              >
+                Follow
+              </Button>
+            </Flex>
+          )}
         </Flex>
         <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }} mt={1}>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as="span" fontWeight={"bold"} mr={1}>
-              7
+              {userProfile.posts.length}
             </Text>
             Posts
           </Text>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as="span" fontWeight={"bold"} mr={1}>
-              4
+              {userProfile.followers.length}
             </Text>
             Followers
           </Text>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as="span" fontWeight={"bold"} mr={1}>
-              7
+              {userProfile.followings.length}
             </Text>
             Followings
           </Text>
         </Flex>
         <Flex alignItems={"center"} gap={4}>
           <Text fontSize={"sm"} fontWeight={"bold"}>
-            destiny
+            {userProfile.fullname}
           </Text>
         </Flex>
 
-        <Text fontSize={"sm"}>History does not repeat itself. It rhymes.</Text>
+        <Text fontSize={"sm"}>{userProfile.bio}</Text>
       </VStack>
     </Flex>
   );
