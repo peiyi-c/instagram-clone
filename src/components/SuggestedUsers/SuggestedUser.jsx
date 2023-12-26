@@ -1,36 +1,51 @@
 import { Avatar, Text, Button, Flex, VStack } from "@chakra-ui/react";
-import { useState } from "react";
+import useFollowUser from "../../hooks/useFollowUser";
+import useAuthStore from "../../store/authStore";
 
-const SuggestedUser = ({ username, followers, avatar }) => {
-  const [isFollowed, setIsFollowed] = useState(false);
+const SuggestedUser = ({ user, setUser }) => {
+  const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(user.uid);
+  const authUser = useAuthStore((state) => state.user);
+  const onFollowUser = async () => {
+    await handleFollowUser();
+    setUser({
+      ...user,
+      followers: isFollowing
+        ? user.followers.filter((follower) => follower.uid !== authUser.uid)
+        : [...user.followers, authUser],
+    });
+  };
+
   return (
     <Flex justifyContent={"space-between"} alignItems={"center"} width={"full"}>
       {/* left */}
       <Flex alignItems={"center"} gap={2}>
-        <Avatar src={avatar} name={username} size={"md"} />
+        <Avatar src={user.profilePicURL} name={user.fullname} size={"md"} />
         <VStack spacing={2} alignItems={"flex-start"}>
           <Text fontSize={12} fontWeight={"bold"}>
-            {username}
+            {user.fullname}
           </Text>
           <Text fontSize={11} color={"gray.500"}>
-            {followers} followers
+            {user.followers.length} followers
           </Text>
         </VStack>
       </Flex>
       {/* right */}
-      <Button
-        onClick={() => setIsFollowed(!isFollowed)}
-        fontSize={13}
-        bg={"transparent"}
-        p={0}
-        h={"max-content"}
-        fontWeight={"medium"}
-        color={"blue.400"}
-        cursor={"pointer"}
-        _hover={{ color: "white" }}
-      >
-        {isFollowed ? "Unfollow" : "Follow"}
-      </Button>
+      {authUser.uid !== user.uid && (
+        <Button
+          onClick={onFollowUser}
+          fontSize={13}
+          bg={"transparent"}
+          p={0}
+          h={"max-content"}
+          fontWeight={"medium"}
+          color={"blue.400"}
+          cursor={"pointer"}
+          _hover={{ color: "white" }}
+          isLoading={isUpdating}
+        >
+          {isFollowing ? "Unfollow" : "Follow"}
+        </Button>
+      )}
     </Flex>
   );
 };
