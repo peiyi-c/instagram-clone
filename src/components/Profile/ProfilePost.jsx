@@ -20,7 +20,7 @@ import { MdDelete } from "react-icons/md";
 import Comment from "../Comment/Comment";
 import PostFooter from "../Feedposts/PostFooter";
 
-function ProfilePost({ img }) {
+const ProfilePost = ({ img }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -186,6 +186,6 @@ function ProfilePost({ img }) {
       </Modal>
     </>
   );
-}
+};
 
 export default ProfilePost;

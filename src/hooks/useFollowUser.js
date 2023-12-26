@@ -5,7 +5,7 @@ import { useToast } from "@chakra-ui/react";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 
-function useFollowUser(userId) {
+const useFollowUser = (userId) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
 
@@ -86,5 +86,5 @@ function useFollowUser(userId) {
   };
 
   return { isUpdating, isFollowing, handleFollowUser };
-}
+};
 export default useFollowUser;

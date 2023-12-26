@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import useSignupWithEmailAndPassword from "../../hooks/useSignupWithEmailAndPassword";
 
-function Signup() {
+const Signup = () => {
   const [inputs, setInputs] = useState({
     fullname: "",
     username: "",
@@ -88,6 +88,6 @@ function Signup() {
       </Button>
     </>
   );
-}
+};
 
 export default Signup;

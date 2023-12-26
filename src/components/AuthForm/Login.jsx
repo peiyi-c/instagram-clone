@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Input, Button, Alert, AlertIcon } from "@chakra-ui/react";
 import useLogin from "../../hooks/useLogin";
-function Login() {
+
+const Login = () => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -49,6 +50,6 @@ function Login() {
       </Button>
     </>
   );
-}
+};
 
 export default Login;

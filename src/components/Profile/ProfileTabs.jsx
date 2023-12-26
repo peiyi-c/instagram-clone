@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { BsBookmark, BsGrid3X3, BsSuitHeart } from "react-icons/bs";
-function ProfileTabs() {
+
+const ProfileTabs = () => {
   return (
     <Flex
       w={"full"}
@@ -41,6 +42,6 @@ function ProfileTabs() {
       </Flex>
     </Flex>
   );
-}
+};
 
 export default ProfileTabs;

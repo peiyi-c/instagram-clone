@@ -2,7 +2,7 @@ import { Box, Image } from "@chakra-ui/react";
 import PostFooter from "./PostFooter";
 import PostHeader from "./PostHeader";
 
-function Feedpost({ username, img, avatar }) {
+const Feedpost = ({ username, img, avatar }) => {
   return (
     <>
       <PostHeader username={username} avatar={avatar} />
@@ -12,6 +12,6 @@ function Feedpost({ username, img, avatar }) {
       <PostFooter username={username} />
     </>
   );
-}
+};
 
 export default Feedpost;

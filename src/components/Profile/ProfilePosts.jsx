@@ -2,7 +2,7 @@ import { Box, Grid, Skeleton, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ProfilePost from "./ProfilePost";
 
-function ProfilePosts() {
+const ProfilePosts = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -36,6 +36,6 @@ function ProfilePosts() {
       )}
     </Grid>
   );
-}
+};
 
 export default ProfilePosts;

@@ -1,6 +1,7 @@
 import { Flex, Image, Text, Alert, AlertIcon } from "@chakra-ui/react";
 import useLoginWithGoogle from "../../hooks/useLoginWithGoogle";
-function GoogleAuth({ prefix }) {
+
+const GoogleAuth = ({ prefix }) => {
   const { loginGoogle, error } = useLoginWithGoogle();
   return (
     <Flex justifyContent={"center"} alignItems={"center"} cursor={"pointer"}>
@@ -16,6 +17,6 @@ function GoogleAuth({ prefix }) {
       )}
     </Flex>
   );
-}
+};
 
 export default GoogleAuth;

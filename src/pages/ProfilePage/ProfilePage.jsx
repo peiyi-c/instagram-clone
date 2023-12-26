@@ -14,7 +14,7 @@ import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 
-function ProfilePage() {
+const ProfilePage = () => {
   const { username } = useParams();
   const { isLoading, userProfile } = useGetUserProfileByUsername(username);
   const userNotFound = !isLoading && !userProfile;
@@ -47,7 +47,7 @@ function ProfilePage() {
       </Flex>
     </Container>
   );
-}
+};
 
 export default ProfilePage;
 

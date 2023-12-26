@@ -12,7 +12,7 @@ import useShowToast from "./useShowToast";
 import useAuthStore from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 
-function useSignupWithEmailAndPassword() {
+const useSignupWithEmailAndPassword = () => {
   const [createUserWithEmailAndPassword, , loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const showToast = useShowToast();
@@ -64,6 +64,6 @@ function useSignupWithEmailAndPassword() {
   };
 
   return { loading, error, signup };
-}
+};
 
 export default useSignupWithEmailAndPassword;

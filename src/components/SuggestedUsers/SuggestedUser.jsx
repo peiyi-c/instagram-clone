@@ -1,7 +1,7 @@
 import { Avatar, Text, Button, Flex, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 
-function SuggestedUser({ username, followers, avatar }) {
+const SuggestedUser = ({ username, followers, avatar }) => {
   const [isFollowed, setIsFollowed] = useState(false);
   return (
     <Flex justifyContent={"space-between"} alignItems={"center"} width={"full"}>
@@ -33,6 +33,6 @@ function SuggestedUser({ username, followers, avatar }) {
       </Button>
     </Flex>
   );
-}
+};
 
 export default SuggestedUser;

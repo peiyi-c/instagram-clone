@@ -4,7 +4,7 @@ import useShowToast from "./useShowToast";
 import useAuthStore from "../store/authStore";
 import { getDoc, setDoc, doc } from "firebase/firestore";
 
-function useLoginWithGoogle() {
+const useLoginWithGoogle = () => {
   const [signInWithGoogle, , , error] = useSignInWithGoogle(auth);
   const showToast = useShowToast();
   const loginUser = useAuthStore((state) => state.login);
@@ -47,6 +47,6 @@ function useLoginWithGoogle() {
     }
   };
   return { loginGoogle, error };
-}
+};
 
 export default useLoginWithGoogle;

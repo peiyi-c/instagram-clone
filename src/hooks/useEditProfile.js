@@ -6,7 +6,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { firestore, storage } from "../firebase/firebase";
 import useUserProfileStore from "../store/userProfileStore";
 
-function useEditProfile() {
+const useEditProfile = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const authUser = useAuthStore((state) => state.user);
   const setAuthUser = useAuthStore((state) => state.setUser);
@@ -46,6 +46,6 @@ function useEditProfile() {
   };
 
   return { editProfile, isUpdating };
-}
+};
 
 export default useEditProfile;

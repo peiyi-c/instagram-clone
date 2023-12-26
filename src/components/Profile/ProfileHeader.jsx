@@ -12,7 +12,7 @@ import useAuthStore from "../../store/authStore";
 import EditProfile from "./EditProfile";
 import useFollowUser from "../../hooks/useFollowUser";
 
-function ProfileHeader() {
+const ProfileHeader = () => {
   const { userProfile } = useUserProfileStore();
   const authUser = useAuthStore((state) => state.user);
   const visitingOwnProfileAndAuth =
@@ -109,6 +109,6 @@ function ProfileHeader() {
       {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
     </Flex>
   );
-}
+};
 
 export default ProfileHeader;

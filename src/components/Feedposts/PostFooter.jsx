@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/logos";
-function PostFooter({ username, isProfilePage }) {
+
+const PostFooter = ({ username, isProfilePage }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
   const handleLike = () => {
@@ -75,6 +76,6 @@ function PostFooter({ username, isProfilePage }) {
       </Flex>
     </Box>
   );
-}
+};
 
 export default PostFooter;

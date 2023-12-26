@@ -4,7 +4,7 @@ import useShowToast from "./useShowToast";
 import { doc, getDoc } from "firebase/firestore";
 import useAuthStore from "../store/authStore";
 
-function useLogin() {
+const useLogin = () => {
   const [signInWithEmailAndPassword, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -30,6 +30,6 @@ function useLogin() {
   };
 
   return { login, loading, error };
-}
+};
 
 export default useLogin;

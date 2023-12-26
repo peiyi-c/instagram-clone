@@ -2,7 +2,7 @@ import { Text, Flex, VStack, Box, Link } from "@chakra-ui/react";
 import SuggestedUser from "./SuggestedUser";
 import SuggestedHeader from "./SuggestedHeader";
 
-function SuggestedUsers() {
+const SuggestedUsers = () => {
   return (
     <VStack py={8} px={4} gap={4}>
       <SuggestedHeader />
@@ -50,6 +50,6 @@ function SuggestedUsers() {
       </Box>
     </VStack>
   );
-}
+};
 
 export default SuggestedUsers;

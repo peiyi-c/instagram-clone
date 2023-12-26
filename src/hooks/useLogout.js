@@ -3,7 +3,7 @@ import { auth } from "../firebase/firebase";
 import useShowToast from "./useShowToast";
 import useAuthStore from "../store/authStore";
 
-function useLogout() {
+const useLogout = () => {
   const [signOut, loading, error] = useSignOut(auth);
   const showToast = useShowToast();
   const logoutUser = useAuthStore((state) => state.logout);
@@ -19,6 +19,6 @@ function useLogout() {
   };
 
   return { logout, loading, error };
-}
+};
 
 export default useLogout;

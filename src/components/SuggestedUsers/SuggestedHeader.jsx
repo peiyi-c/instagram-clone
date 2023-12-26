@@ -3,7 +3,7 @@ import useLogout from "../../hooks/useLogout";
 import useAuthStore from "../../store/authStore";
 import { Link } from "react-router-dom";
 
-function SuggestedHeader() {
+const SuggestedHeader = () => {
   const { logout, loading } = useLogout();
   const authUser = useAuthStore((state) => state.user);
 
@@ -39,6 +39,6 @@ function SuggestedHeader() {
       </Button>
     </Flex>
   );
-}
+};
 
 export default SuggestedHeader;

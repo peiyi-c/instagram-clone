@@ -4,7 +4,7 @@ import { collection, query, getDocs, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import useUserProfileStore from "../store/userProfileStore";
 
-function useGetUserProfileByUsername(username) {
+const useGetUserProfileByUsername = (username) => {
   const [isLoading, setIsLoading] = useState(true);
   const showToast = useShowToast();
   const { userProfile, setUserProfile } = useUserProfileStore();
@@ -35,6 +35,6 @@ function useGetUserProfileByUsername(username) {
     getUserProfile();
   }, [setUserProfile, username, showToast]);
   return { isLoading, userProfile };
-}
+};
 
 export default useGetUserProfileByUsername;
