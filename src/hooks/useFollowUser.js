@@ -45,12 +45,14 @@ const useFollowUser = (userId) => {
           ...authUser,
           followings: authUser.followings.filter((uid) => uid !== userId),
         });
-        setUserProfile({
-          ...userProfile,
-          followers: userProfile.followers.filter(
-            (uid) => uid !== authUser.uid
-          ),
-        });
+        if (userProfile) {
+          setUserProfile({
+            ...userProfile,
+            followers: userProfile.followers.filter(
+              (uid) => uid !== authUser.uid
+            ),
+          });
+        }
         localStorage.setItem(
           "user-info",
           JSON.stringify({
@@ -65,10 +67,12 @@ const useFollowUser = (userId) => {
           ...authUser,
           followings: [...authUser.followings, userId],
         });
-        setUserProfile({
-          ...userProfile,
-          followers: [...userProfile.followers, authUser.uid],
-        });
+        if (userProfile) {
+          setUserProfile({
+            ...userProfile,
+            followers: [...userProfile.followers, authUser.uid],
+          });
+        }
         localStorage.setItem(
           "user-info",
           JSON.stringify({
