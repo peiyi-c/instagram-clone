@@ -10,9 +10,14 @@ import {
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
 import EditProfile from "./EditProfile";
+<<<<<<< HEAD
 import useFollowUser from "../../hooks/useFollowUser";
 
 const ProfileHeader = () => {
+=======
+
+function ProfileHeader() {
+>>>>>>> 23f6736714ca4bd2a5d21ae3246f5faf5bf819d6
   const { userProfile } = useUserProfileStore();
   const authUser = useAuthStore((state) => state.user);
   const visitingOwnProfileAndAuth =
@@ -21,9 +26,12 @@ const ProfileHeader = () => {
     authUser && authUser.username !== userProfile.username;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+<<<<<<< HEAD
   const { isUpdating, isFollowing, handleFollowUser } = useFollowUser(
     userProfile?.uid
   );
+=======
+>>>>>>> 23f6736714ca4bd2a5d21ae3246f5faf5bf819d6
 
   return (
     <Flex gap={{ base: 4, sm: 10 }} direction={{ base: "column", sm: "row" }}>
