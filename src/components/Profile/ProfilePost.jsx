@@ -9,7 +9,7 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
-  Box,
+  Button,
   Avatar,
   Divider,
   VStack,
@@ -19,9 +19,14 @@ import { FaComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Comment from "../Comment/Comment";
 import PostFooter from "../Feedposts/PostFooter";
+import useUserProfileStore from "../../store/userProfileStore";
+import useAuthStore from "../../store/authStore";
 
-const ProfilePost = ({ img }) => {
+const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { userProfile } = useUserProfileStore();
+  const authUser = useAuthStore((state) => state.user);
+
   return (
     <>
       <GridItem
@@ -51,19 +56,19 @@ const ProfilePost = ({ img }) => {
             <Flex>
               <AiFillHeart size={20} />
               <Text fontWeight={"bold"} ml={2}>
-                7
+                {post.likes.length}
               </Text>
             </Flex>
             <Flex>
               <FaComment size={20} />
               <Text fontWeight={"bold"} ml={2}>
-                7
+                {post.comments.length}
               </Text>
             </Flex>
           </Flex>
         </Flex>
         <Image
-          src={img}
+          src={post.imageURL}
           alt="profile post"
           w={"100%"}
           h={"100%"}
@@ -84,16 +89,20 @@ const ProfilePost = ({ img }) => {
               w={{ base: "90%", sm: "70%", md: "full" }}
               mx={"auto"}
               gap={4}
+              maxH={"90vh"}
+              minH={"50vh"}
             >
-              <Box
+              <Flex
                 borderRadius={4}
                 overflow={"hidden"}
                 border={"1px solid"}
                 borderColor={"whiteAlpha.300"}
                 flex={1.5}
+                justifyContent={"center"}
+                alignItems={"center"}
               >
-                <Image src={img} alt="profile post" />
-              </Box>
+                <Image src={post.imageURL} alt="profile post" />
+              </Flex>
               <Flex
                 flex={1}
                 direction={"column"}
@@ -104,22 +113,26 @@ const ProfilePost = ({ img }) => {
                   {/* left */}
                   <Flex alignItems={"center"} gap={4}>
                     <Avatar
-                      src="./profilepci.png"
+                      src={userProfile.profilePicURL}
                       name="As a Programmer"
                       size={"sm"}
                     />
                     <Text fontWeight={"bold"} fontSize={12}>
-                      asparagar_
+                      {userProfile.username}
                     </Text>
                   </Flex>
-                  <Box
-                    _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
-                    borderRadius={4}
-                    p={1}
-                  >
-                    {/* right */}
-                    <MdDelete size={20} cursor={"pointer"} />
-                  </Box>
+                  {authUser?.uid === userProfile.uid && (
+                    <Button
+                      size={"sm"}
+                      bg={"transparent"}
+                      _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
+                      borderRadius={4}
+                      p={1}
+                    >
+                      {/* right */}
+                      <MdDelete size={20} cursor={"pointer"} />
+                    </Button>
+                  )}
                 </Flex>
                 <Divider my={4} bg={"gray.500"} />
                 <VStack
@@ -128,42 +141,6 @@ const ProfilePost = ({ img }) => {
                   maxH={"350px"}
                   overflowY={"auto"}
                 >
-                  <Comment
-                    createdAt="1 day ago"
-                    username="rgasd"
-                    img="http://bit.ly/dan-abramov"
-                    text="nice pic"
-                  />
-                  <Comment
-                    createdAt="1 day ago"
-                    username="rgasd"
-                    img="http://bit.ly/dan-abramov"
-                    text="nice pic"
-                  />
-                  <Comment
-                    createdAt="1 day ago"
-                    username="rgasd"
-                    img="http://bit.ly/dan-abramov"
-                    text="nice pic"
-                  />
-                  <Comment
-                    createdAt="1 day ago"
-                    username="rgasd"
-                    img="http://bit.ly/dan-abramov"
-                    text="nice pic"
-                  />
-                  <Comment
-                    createdAt="1 day ago"
-                    username="rgasd"
-                    img="http://bit.ly/dan-abramov"
-                    text="nice pic"
-                  />
-                  <Comment
-                    createdAt="1 day ago"
-                    username="rgasd"
-                    img="http://bit.ly/dan-abramov"
-                    text="nice pic"
-                  />
                   <Comment
                     createdAt="1 day ago"
                     username="rgasd"
