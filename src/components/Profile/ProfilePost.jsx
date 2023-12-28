@@ -21,11 +21,24 @@ import Comment from "../Comment/Comment";
 import PostFooter from "../Feedposts/PostFooter";
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
+import useDeletePost from "../../hooks/useDeletePost";
+import useShowToast from "../../hooks/useShowToast";
 
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { userProfile } = useUserProfileStore();
+  const { isDeleting, handleDeletePost } = useDeletePost();
   const authUser = useAuthStore((state) => state.user);
+  const showToast = useShowToast();
+
+  const handlePostDeletion = async (postId) => {
+    try {
+      await handleDeletePost(postId);
+      onClose();
+    } catch (error) {
+      showToast("Error", error.message, "error");
+    }
+  };
 
   return (
     <>
@@ -123,6 +136,8 @@ const ProfilePost = ({ post }) => {
                   </Flex>
                   {authUser?.uid === userProfile.uid && (
                     <Button
+                      onClick={() => handlePostDeletion(post.id)}
+                      isLoading={isDeleting}
                       size={"sm"}
                       bg={"transparent"}
                       _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
