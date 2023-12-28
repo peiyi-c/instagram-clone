@@ -18,6 +18,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Comment from "../Comment/Comment";
+import Caption from "../Comment/Caption";
 import PostFooter from "../Feedposts/PostFooter";
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
@@ -156,6 +157,9 @@ const ProfilePost = ({ post }) => {
                   maxH={"350px"}
                   overflowY={"auto"}
                 >
+                  {/* Caption */}
+                  {post.caption && <Caption post={post} />}
+                  {/* Comments */}
                   {post.comments.map((comment, index) => (
                     <Comment key={index} comment={comment} />
                   ))}
