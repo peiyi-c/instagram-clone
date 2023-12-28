@@ -18,6 +18,13 @@ const useGetUserProfileById = (userId) => {
         if (userRef.exists()) {
           setUserProfile(userRef.data());
         }
+        // const userRef = doc(firestore, "users", userId);
+        // const userSnap = await getDoc(userRef);
+
+        // if (userRef.exists()) {
+        //   const userDoc = userSnap.data();
+        //   setUserProfile(userDoc);
+        // }
       } catch (error) {
         showToast("Error", error.message, "error");
       } finally {
@@ -26,7 +33,8 @@ const useGetUserProfileById = (userId) => {
     };
     getUserProfile();
   }, [showToast, setUserProfile, userId]);
-  return { isLoading, userProfile };
+
+  return { isLoading, userProfile, setUserProfile };
 };
 
 export default useGetUserProfileById;
