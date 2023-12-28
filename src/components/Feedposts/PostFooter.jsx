@@ -11,23 +11,15 @@ import { useRef, useState } from "react";
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/logos";
 import usePostComment from "../../hooks/usePostComment";
 import useAuthStore from "../../store/authStore";
+import useLikePost from "../../hooks/useLikePost";
+import { timeAgo } from "../../utils/timeAgo";
 
-const PostFooter = ({ post, username, isProfilePage }) => {
-  const [isLiked, setIsLiked] = useState(false);
-  const [likes, setLikes] = useState(1000);
+const PostFooter = ({ post, isProfilePage }) => {
   const [comment, setComment] = useState("");
   const { isCommenting, handlePostComment } = usePostComment();
   const authUser = useAuthStore((state) => state.user);
   const commentRef = useRef(null);
-  const handleLike = () => {
-    if (isLiked) {
-      setIsLiked(false);
-      setLikes((likes) => likes--);
-    } else {
-      setIsLiked(true);
-      setLikes((likes) => likes++);
-    }
-  };
+  const { isLiked, likes, handleLikePost } = useLikePost(post);
 
   const handleSubmitComment = async () => {
     await handlePostComment(post.id, comment);
@@ -36,8 +28,8 @@ const PostFooter = ({ post, username, isProfilePage }) => {
   return (
     <Box mb={10} mt={"auto"}>
       <Flex alignItems={"center"} gap={4} width={"full"} pt={0} mb={2} mt={4}>
-        <Box onClick={handleLike} fontSize={18} cursor={"pointer"}>
-          {isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
+        <Box onClick={handleLikePost} fontSize={18} cursor={"pointer"}>
+          {!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
         </Box>
         <Box onClick={() => commentRef.current.focus()} cursor={"pointer"}>
           <CommentLogo fontSize={18} cursor={"pointer"} />
@@ -46,18 +38,10 @@ const PostFooter = ({ post, username, isProfilePage }) => {
       <Text fontSize={"sm"} fontWeight={600}>
         {likes} likes
       </Text>
-      {!isProfilePage && (
-        <>
-          <Text fontSize={"sm"} fontWeight={700}>
-            {username}{" "}
-            <Text as="span" fontWeight={400}>
-              Feeling good
-            </Text>
-          </Text>
-          <Text fontSize={"sm"} color={"gray"}>
-            View all 1,000 comments
-          </Text>
-        </>
+      {isProfilePage && (
+        <Text fontSize="12" color={"gray"}>
+          Posted {timeAgo(post.createdAt)}
+        </Text>
       )}
       {authUser && (
         <Flex
