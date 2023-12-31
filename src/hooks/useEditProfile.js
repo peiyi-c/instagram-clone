@@ -28,7 +28,7 @@ const useEditProfile = () => {
         URL = await getDownloadURL(ref(storage, `profilePics/${authUser.uid}`));
       }
       const updatedUser = {
-        // ...authUser,
+        ...authUser,
         fullname: inputs.fullname || authUser.fullname,
         username: inputs.username || authUser.username,
         bio: inputs.bio || authUser.bio,
