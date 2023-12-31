@@ -6,8 +6,6 @@ import { timeAgo } from "../../utils/timeAgo";
 function Comment({ comment }) {
   const { isLoading, userProfile } = useGetUserProfileById(comment.createdBy);
   if (isLoading) return <CommentSkeleton />;
-  console.log("createdBy", comment.createdBy);
-  console.log("userProfile", userProfile);
   return (
     <Flex gap={4}>
       <Link to={`/${userProfile.username}`}>

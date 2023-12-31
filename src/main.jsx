@@ -16,6 +16,7 @@ const styles = {
   }),
 };
 
+// COLOR MODE //
 const config = {
   initialColorMode: "dark",
   useSystemColorMode: false,
